@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+env/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Streamlit
+.streamlit/
+
+# Large raw source files (not needed to reproduce results)
+earthquake(mag4)2000to10.csv
+earthquake(mag4)2011to20.csv
+earthquake(mag4)2021to25.csv
+japan_earthquake_dataset.csv
