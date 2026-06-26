@@ -847,19 +847,23 @@ with main_col:
             st_markdown_dedented("""
 <div class="cmd-panel" style="font-size:0.8rem; line-height:1.5; color:#2C3E50;">
     <b>Heuristic Risk Score (HRS) Formulation:</b><br>
-    To classify seismic hazard, the system formulates an empirical stress-proxy metric:
-    $$HRS = \\log_{10}(Count_{3yr} + 1) + 2.0 \\times MaxMagnitude_{3yr}$$
-    The classes are bounded at P50 and P85 of the historical distribution:
-    - <b>Low Hazard</b>: $HRS < P50$
-    - <b>Medium Hazard</b>: $P50 \\le HRS < P85$
-    - <b>High Hazard</b>: $HRS \\ge P85$
+    To classify seismic hazard, the system formulates an empirical stress-proxy metric:<br>
+    <div style="background:#f0f4f8; border-left:3px solid #0F4C81; padding:6px 10px; margin:6px 0; font-family:monospace; font-size:0.85rem; border-radius:0 4px 4px 0;">
+        HRS = log<sub>10</sub>(Count<sub>3yr</sub> + 1) + 2.0 &times; MaxMagnitude<sub>3yr</sub>
+    </div>
+    The classes are bounded at P50 and P85 of the historical distribution:<br>
+    &bull; <b>Low Hazard</b>: HRS &lt; P50<br>
+    &bull; <b>Medium Hazard</b>: P50 &le; HRS &lt; P85<br>
+    &bull; <b>High Hazard</b>: HRS &ge; P85<br>
     <br>
     <b>Architectural Pipeline:</b><br>
-    - <b>Spatial Indexing:</b> Uber H3 Grid (Resolution 5, average cell area $\\sim 2,525 km^2$) partitions latitude/longitude coordinates into structural centroids.
-    - <b>Ensemble RF Classifier:</b> Decodes risk boundaries based on spatial, temporal, and physical variables ($n=100$ estimators, temporal chronological train-test split).
-    - <b>Tactical Route Optimization:</b> High-dimensional $A^*$ pathfinding traversal across adjacent H3 cell graphs using cost multipliers:
-    $$Cost_{Safest} = Distance \\times \\omega_{Risk}$$
-    where $\\omega_{Low}=1$, $\\omega_{Medium}=5$, and $\\omega_{High}=20$.
+    &bull; <b>Spatial Indexing:</b> Uber H3 Grid (Resolution 5, average cell area &sim;2,525 km<sup>2</sup>) partitions latitude/longitude coordinates into structural centroids.<br>
+    &bull; <b>Ensemble RF Classifier:</b> Decodes risk boundaries based on spatial, temporal, and physical variables (n=100 estimators, temporal chronological train-test split).<br>
+    &bull; <b>Tactical Route Optimization:</b> High-dimensional A* pathfinding traversal across adjacent H3 cell graphs using cost multipliers:<br>
+    <div style="background:#f0f4f8; border-left:3px solid #0F4C81; padding:6px 10px; margin:6px 0; font-family:monospace; font-size:0.85rem; border-radius:0 4px 4px 0;">
+        Cost<sub>Safest</sub> = Distance &times; &omega;<sub>Risk</sub>
+    </div>
+    where &omega;<sub>Low</sub>=1, &omega;<sub>Medium</sub>=5, and &omega;<sub>High</sub>=20.
 </div>
 """, unsafe_allow_html=True)
             
